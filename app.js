@@ -123,7 +123,7 @@ app.use('/admin/pages', adminPages);
 app.use('/', pages);
 
 //start server
-const port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 app.listen(port, ()=>{
     console.log(`server is running on http://localhost:${port}`)
