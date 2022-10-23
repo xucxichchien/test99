@@ -1,0 +1,38 @@
+<%- include('../layouts/adminHeader'); -%>
+
+
+
+<h2 class="page-title pt-3"> Categories</h2>
+<br />
+<a href="/admin/categories/add_categorey" class="btn btn-primary"> Add category </a>
+<br /> <br />
+
+<table class="table table-striped ">
+    <thead>
+            <tr class="home">
+                <th>Categorey</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+    </thead>
+    <tbody>
+        <% cats.forEach(element => { %>
+            <tr >
+                <td >
+                    <%= element.title %> 
+                </td>
+                <td> <a href="/admin/categories/edit-categorey/<%= element.slug %> ">Edit</a>  </td>
+               
+                <td> <a class="confirmDeletion" href="/admin/categories/delete-categorey/<%= element._id %> ">Delete</a>  </td>
+            </tr>
+          <%  }); %>
+
+        
+     
+    </tbody>
+</table>
+
+
+<!-- Bootstrap core JavaScript Do not Delete -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<%- include('../layouts/adminFooter'); -%>

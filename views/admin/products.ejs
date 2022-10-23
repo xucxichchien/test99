@@ -1,0 +1,65 @@
+<%- include('../layouts/adminHeader'); -%>
+
+<h2 class="page-title pt-3">Products</h2>
+<br />
+<a href="/admin/products/add_product" class="btn btn-primary"> Add product </a>
+<br />
+<br />
+
+
+ 
+
+<table class="table table-striped sorting alignmiddle">
+  <thead>
+    <tr class="home">
+      <th>Product</th>
+      <th>Price</th>
+      <th>Categorey</th>
+      <th>Product Img</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach(element => { %>
+    <tr>
+      <td>
+        <%= element.title %>
+      </td>
+      <td>
+        £<%= parseFloat(element.price).toFixed(2) %>
+      </td>
+      <td>
+        <%= element.categorey %>
+      </td>
+      <td>
+        <% if (element.image == "") { %>
+
+        <img src="/images/noImage.jpg" alt="" />
+
+        <% } else { %>
+
+        <img id="nono"  src="/images/product_imgs/<%= element._id %>/<%= element.image %>" alt="" />
+        <% }  %>
+      </td>
+
+      <td><a href="/admin/products/edit-product/<%= element._id  %>">Edit</a></td>
+      
+      <td>
+        <a
+          class="confirmDeletion"
+          href="/admin/products/delete-product/<%= element._id %>"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+
+
+
+<!-- Bootstrap core JavaScript Do not Delete -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<%- include('../layouts/adminFooter'); -%>

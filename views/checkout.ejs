@@ -1,0 +1,98 @@
+<%- include('layouts/header'); -%>
+
+
+<% if (typeof cart !== "undefined") { %>
+
+<h1 class="page-title">My Cart</h1>
+<hr />
+<br />
+<table class="table table-striped alignmiddle">
+    
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <th>Subtotal</th>
+    </tr>
+    
+    <% var total = 0; %>
+    <% var names =[]  %> 
+    <% cart.forEach(function(product){ %>
+    <% var sub = parseFloat(product.qty * product.price).toFixed(2) %>
+    <% total += +sub %>
+    <% names.push(product.title) %> 
+    <tr>
+        <td><img class="cpi" src="<%= product.image %>" alt=""></td>
+        <td><%= product.title %></td>
+        <td>$<%= product.price %></td>
+        <td><%= product.qty %></td>
+        <td>
+            <a href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
+            <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
+            <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>&nbsp;
+        </td>
+        <td>£<%= sub %></td>
+    </tr>
+    <% }); %>
+    <tr>
+        <td colspan="6" align="right"><b>Total: </b> £<%= parseFloat(total).toFixed(2) %></td>
+    </tr>
+    <tr>
+        <td colspan="5" align="right">
+            <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
+        </td>
+        <td colspan="5" align="right">
+            <form  action="/cart/charge" method="POST">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_ndmsGOBtHLyzgyfuCQl1l9DE00TcqwLQSE" data-amount="<%= total *100 %>"  data-name="<%= names  %> "
+        data-description="products in cart" data-image="/images/marketplace.png" data-locale="auto"
+        data-currency="gbp">
+        </script>
+        <script>
+            //hide default strip button
+            document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+        </script>
+    
+        <button type="submit" class="btn btn-primary buynow" >Buy now </button>
+</form>
+            <!-- <a class="btn btn-primary buynow" href="#">Buy now</a> -->
+        </td>
+    </tr>
+    
+</table>
+
+
+
+
+<% } else {%>
+<h3 class="text-center">Your cart is empty.</h3>
+<% } %>
+
+
+<!-- jquery core -->
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<script>
+    
+$(function() {
+   
+    $('a.clearcart').on('click', function () {
+        if (!confirm('Are you sure you want to clear cart ??'))
+            return false;
+    });
+
+   
+    
+   
+        
+});
+    
+</script>
+
+
+<%- include('layouts/footer'); -%>

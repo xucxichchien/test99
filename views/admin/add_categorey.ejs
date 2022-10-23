@@ -1,0 +1,22 @@
+<%- include('../layouts/adminHeader'); -%>
+
+<h2 class="page-title pt-3"> Add a categorey </h2>
+<br />
+<a href="/admin/categories" class="btn btn-primary"> Back to All  categories </a>
+<br /> <br />
+<form method="POST" action="/admin/categories/add_categorey">
+    <div class="form-group">
+        <label for="">Title:</label>
+        <input type="text" class="form-control"  name="title"  value="<%= title %>" placeholder="title" >
+    </div>
+
+   
+
+    <button type="submit" class="btn btn-primary" > Submit </button>
+
+</form>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<%- include('../layouts/adminFooter'); -%>

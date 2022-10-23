@@ -1,0 +1,47 @@
+<%- include('layouts/header'); -%>
+
+<h1 class="page-header"><%= p.title %></h1>
+<hr />
+
+<div class="row">
+    
+    
+    <div class="col-xs-12 col-md-5">
+        <% if (p.image == "") { %>
+
+            <img id="noImage" class="pimage"  src="/images/noImage.jpg" alt="" />
+    
+            <% } else { %>
+    
+                <img class="pimage" src="/images/product_imgs/<%= p.id %>/<%= p.image %>" alt="">
+            <% }  %>
+        <br>
+    </div>
+    <div class="col-xs-12 col-md-7">
+        <p><%- p.desc %></p>
+        <p>$<%= parseFloat(p.price).toFixed(2) %></p>
+        <% if (loggedIn) { %>
+            <p> <a class="btn btn-primary"  href="/cart/add/<%= p.slug %> ">Add to cart</a> </p>
+        <% } else { %>
+            <p> You must be Logged In to purchase Items ( <a class="btn btn-primary" href="/users/login">Login</a> ) </p>
+        <% } %>
+
+        
+       
+    </div>
+    <div class="col-xs-12">
+        <ul class="gallery">
+            <% galleryImages.forEach(function(image){ %>
+            <% if (image != "thumbs") { %>
+            <li>
+                <a data-fancybox="gallery" href="/images/product_imgs/<%= p.id %>/gallery/<%= image %>">
+                    <img src="/images/product_imgs/<%= p.id %>/gallery/thumbs/<%= image %>" alt="">
+                </a>
+            </li>
+            <% } %>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+
+<%- include('layouts/footer'); -%>
