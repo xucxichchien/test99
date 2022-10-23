@@ -125,6 +125,5 @@ app.use('/', pages);
 //start server
 var port = process.env.PORT || 3000;
 
-app.listen(port, ()=>{
-    console.log(`server is running on http://localhost:${port}`)
-})
+app.listen(port);
+    console.log('server is running on http://localhost:${port}');
